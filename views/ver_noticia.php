@@ -25,12 +25,13 @@ if (!$noticia) {
 <head>
     <title><?= $noticia['titulo'] ?></title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/ver.png">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-<a href="../index.php">⬅ Voltar</a>
+<a href="../index.php"><button>⬅ Voltar</button></a>
 
-<h1><?= $noticia['titulo'] ?></h1>
+<h1 class="tt"><?= $noticia['titulo'] ?></h1>
 
 <p>
     👤 <?= $noticia['autor_nome'] ?> |

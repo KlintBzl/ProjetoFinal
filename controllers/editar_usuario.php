@@ -28,7 +28,7 @@ if ($_POST) {
         $_SESSION['usuario']['email'] = $email;
 
         echo "Dados atualizados com sucesso!";
-        header("refresh:2;url=index.php");
+        header("refresh:2;url=../index.php");
         exit;
     } else {
         echo "Erro ao atualizar!";

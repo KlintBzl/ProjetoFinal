@@ -13,7 +13,7 @@ if ($_POST) {
 
     if ($dao->cadastrar($usuario)) {
         echo "Cadastro realizado com sucesso!";
-        header("refresh:2;url=index.php");
+        header("refresh:2;url=../index.php");
         exit;
     } else {
         echo "Erro ao cadastrar!";

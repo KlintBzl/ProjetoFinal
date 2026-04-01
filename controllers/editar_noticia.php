@@ -9,13 +9,14 @@ if (!isset($_SESSION['usuario'])) {
 
 if ($_POST) {
 
+    $id = $_POST['id'];
     $titulo = $_POST['titulo'];
     $noticia = $_POST['noticia'];
     $autor = $_SESSION['usuario']['id'];
 
     $imagemNome = null;
 
-    // Upload da imagem
+    // Upload nova imagem (opcional)
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
 
         $pasta = "../assets/img/";
@@ -26,10 +27,10 @@ if ($_POST) {
 
     $dao = new NoticiaDAO();
 
-    if ($dao->criar($titulo, $noticia, $autor, $imagemNome)) {
-        echo "Notícia criada com sucesso!";
+    if ($dao->atualizar($id, $titulo, $noticia, $autor, $imagemNome)) {
+        echo "Notícia atualizada com sucesso!";
         header("refresh:2;url=../index.php");
     } else {
-        echo "Erro ao criar notícia!";
+        echo "Erro ao atualizar!";
     }
 }

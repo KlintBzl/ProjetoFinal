@@ -31,6 +31,7 @@ if (!isset($_SESSION['usuario'])) {
     <button type="submit">Publicar</button>
 
 </form>
+<a href="../index.php"><button>Voltar</button></a>
 
 </body>
 </html>
