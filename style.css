@@ -149,6 +149,14 @@ a {
     border: 2px solid #ffd900;
 }
 
+.avatarC {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffd900;
+}
+
 .topo a {
     color: #ffd900;
     margin-left: 10px;

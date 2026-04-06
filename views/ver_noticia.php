@@ -26,6 +26,7 @@ if (!$noticia) {
     <title><?= $noticia['titulo'] ?></title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/ver.png">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style_ver.css">
 </head>
 <body>
 
@@ -33,10 +34,25 @@ if (!$noticia) {
 
 <h1 class="tt"><?= $noticia['titulo'] ?></h1>
 
-<p>
-    👤 <?= $noticia['autor_nome'] ?> |
-    📅 <?= date('d/m/Y H:i', strtotime($noticia['data'])) ?>
-</p>
+<div class="autor-info">
+
+    <?php
+    $caminho = "../uploads/" . $noticia['autor_imagem'];
+
+    $imagem = (!empty($noticia['autor_imagem']) && file_exists($caminho))
+        ? $noticia['autor_imagem']
+        : 'padrao.png';
+    ?>
+
+    <img src="../uploads/<?= urlencode($imagem); ?>" class="avatar-mini">
+    
+    <span><?= $noticia['autor_nome'] ?></span>
+
+    <span class="data">
+        | 📅 <?= date('d/m/Y H:i', strtotime($noticia['data'])) ?>
+    </span>
+
+</div>
 
 <hr>
 

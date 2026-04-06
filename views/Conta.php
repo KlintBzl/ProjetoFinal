@@ -38,7 +38,7 @@ $usuario = $_SESSION['usuario'] ?? null;
     ?>
 
     <div class="perfil">
-            <img src="../uploads/<?= urlencode($imagem); ?>" class="avatar">
+            <img src="../uploads/<?= urlencode($imagem); ?>" class="avatarC">
         <span><?= $usuario['nome']; ?></span>
     </div>
 

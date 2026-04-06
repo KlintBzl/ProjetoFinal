@@ -52,8 +52,9 @@ public function excluir($id, $autor) {
 public function buscarPorId($id) {
 
     $sql = "SELECT 
-                n.*, 
-                u.nome AS autor_nome
+                n.*,
+                u.nome AS autor_nome,
+                u.imagem AS autor_imagem
             FROM noticias n
             JOIN usuarios u ON n.autor = u.id
             WHERE n.id = ?";

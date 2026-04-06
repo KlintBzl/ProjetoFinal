@@ -1,0 +1,20 @@
+.autor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    color: #000000;
+}
+
+.avatar-mini {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ffd900;
+}
+
+.data {
+    margin-left: 10px;
+    font-size: 14px;
+}
