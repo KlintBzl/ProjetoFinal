@@ -1,6 +1,7 @@
 <link rel="icon" type="image/png" sizes="35x35" href="../assets/evento.png">
+    <link rel="stylesheet" href="../style.css">
 
-<form action="../controllers/criar_historia.php" method="POST" enctype="multipart/form-data">
+<form class="forms" action="../controllers/criar_historia.php" method="POST" enctype="multipart/form-data">
     
     <label>Evento:</label><br>
     <textarea name="evento" rows="5" required></textarea>

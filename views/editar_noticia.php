@@ -27,12 +27,13 @@ if ($noticia['autor'] != $_SESSION['usuario']['id']) {
 <head>
     <title>Editar Notícia</title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/Bernadit.png">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <h2>Editar Notícia</h2>
 
-<form action="../controllers/editar_noticia.php" method="POST" enctype="multipart/form-data">
+<form class="forms" action="../controllers/editar_noticia.php" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="id" value="<?= $noticia['id'] ?>">
 

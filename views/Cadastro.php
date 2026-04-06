@@ -3,12 +3,13 @@
 <head>
     <title>Cadastro</title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/cadastro.png">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <h2>Criar Conta</h2>
 
-<form action="../controllers/cadastrar.php" method="POST">
+<form class="forms" action="../controllers/cadastrar.php" method="POST" enctype="multipart/form-data">
     
     <input type="text" name="nome" placeholder="Nome" required>
     <br><br>
@@ -19,10 +20,10 @@
     <input type="password" name="senha" placeholder="Senha" required>
     <br><br>
 
-    <button type="submit">Cadastrar</button>
-    <br>
-    Já está logado? <a href="./Login.php">Entre aqui!</a>
+    <input type="file" name="imagem" accept="image/*" required>
+    <br><br>
 
+    <button type="submit">Cadastrar</button>
 </form>
 
 <a href="../index.php"><button>Voltar</button></a>

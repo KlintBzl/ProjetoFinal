@@ -14,12 +14,13 @@ $usuario = $_SESSION['usuario'];
 <head>
     <title>Editar Conta</title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/edit.png">
+        <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <h2>Editar Conta</h2>
 
-<form action="../controllers/editar_usuario.php" method="POST">
+<form class="forms" action="../controllers/editar_usuario.php" method="POST">
 
     <input type="text" name="nome" value="<?= $usuario['nome'] ?>" required>
     <br><br>
@@ -34,7 +35,18 @@ $usuario = $_SESSION['usuario'];
 
 </form>
 
-<a href="../index.php"><button>Voltar</button></a>
+<form class="forms" action="../controllers/atualizar_usuario.php" method="POST" enctype="multipart/form-data">
+    
+    <input type="file" name="imagem" accept="image/*">
+    <br><br>
+
+    <button type="submit">Atualizar Foto</button>
+    <a href="../controllers/remover_foto.php">
+    <button>Remover Foto</button>
+</a>
+</form>
+
+<a href="./Conta.php"><button>Voltar</button></a>
 
 </body>
 </html>

@@ -15,7 +15,7 @@ if ($dao->excluir($id)) {
     // Destrói sessão
     session_destroy();
 
-    header("Location: ../views/login.php");
+    header("Location: ../views/logar.php");
     exit;
 
 } else {

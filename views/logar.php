@@ -1,10 +1,3 @@
-<?php
-session_start();
-
-$_SESSION['usuario'] = $usuario;
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +22,7 @@ $_SESSION['usuario'] = $usuario;
     <p class="cadastro">Ainda não se cadastrou? <a href="./Cadastro.php">Cadastre-se aqui!</a></p>
 
 </form>
-<a href="../index.php"><button>Voltar</button></a>
+<a href="../index.php"><button>Não quero logar</button></a>
 
 </body>
 </html>

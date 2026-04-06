@@ -10,19 +10,19 @@ class UsuarioDAO {
         $this->conn = $db->conectar();
     }
 
-    public function cadastrar($usuario) {
+   public function cadastrar($usuario) {
 
-        // Criptografar senha
-        $senhaHash = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
+    $senhaHash = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
+    $sql = "INSERT INTO usuarios (nome, email, senha, imagem) VALUES (?, ?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
 
-        return $stmt->execute([
-            $usuario->getNome(),
-            $usuario->getEmail(),
-            $senhaHash
-        ]);
+    return $stmt->execute([
+        $usuario->getNome(),
+        $usuario->getEmail(),
+        $senhaHash,
+        $usuario->getImagem() // 👈 NOVO
+    ]);
     }
 
     public function login($email, $senha) {
@@ -39,7 +39,7 @@ class UsuarioDAO {
     return false;
 }
 
-public function atualizar($id, $nome, $email, $senha = null) {
+public function atualizar($id, $nome, $email, $senha, $imagem = null) {
 
     if ($senha) {
         // Se quiser trocar senha
@@ -49,8 +49,15 @@ public function atualizar($id, $nome, $email, $senha = null) {
         $stmt = $this->conn->prepare($sql);
 
         return $stmt->execute([$nome, $email, $senhaHash, $id]);
+     }elseif ($imagem !== null){
+
+        $sql = "UPDATE usuarios SET imagem=? WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+
+        return $stmt->execute([$imagem, $id]);
+
     } else {
-        // Se NÃO quiser trocar senha
+
         $sql = "UPDATE usuarios SET nome=?, email=? WHERE id=?";
         $stmt = $this->conn->prepare($sql);
 

@@ -1,4 +1,5 @@
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/judit.png">
+    <link rel="stylesheet" href="../style.css">
 <?php
 session_start();
 require_once "../dao/HistoriaDAO.php";
@@ -27,8 +28,7 @@ if (isset($_GET['id'])) {
 
 <h2>Editar Evento</h2>
 
-<!-- 🔽 SELECT DE EVENTOS -->
-<form method="GET">
+<form class="forms" method="GET">
     <label>Escolha o evento:</label><br>
     <select name="id" onchange="this.form.submit()">
         <option value="">-- Selecione --</option>
@@ -46,10 +46,9 @@ if (isset($_GET['id'])) {
 
 <br><br>
 
-<!-- 📝 FORM DE EDIÇÃO -->
 <?php if ($eventoSelecionado): ?>
 
-<form action="../controllers/editar_historia.php" method="POST" enctype="multipart/form-data">
+<form class="forms" action="../controllers/editar_historia.php" method="POST" enctype="multipart/form-data">
 
     <input type="hidden" name="id" value="<?= $eventoSelecionado['id'] ?>">
 
@@ -68,6 +67,8 @@ if (isset($_GET['id'])) {
     <button type="submit">Salvar</button>
 
 </form>
+
+<a href="./hoje.php"><button>Voltar</button></a>
 
 <?php endif; ?>
 

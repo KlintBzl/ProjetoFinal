@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$usuario = $_SESSION['usuario'] ?? null;
+
 require_once "dao/NoticiaDAO.php";
 
 $dao = new NoticiaDAO();
@@ -18,7 +20,8 @@ $noticias = $dao->listar();
 </head>
 <body>
 
-
+<div class="container">
+<div class="card">
 <?php
 
 if (!isset($_SESSION['usuario'])) {
@@ -26,12 +29,44 @@ if (!isset($_SESSION['usuario'])) {
     echo "<a href='./views/Login.php'><button>Entre!</button></a>";
 }
 if (isset($_SESSION['usuario'])) {
-    echo"<a href='./views/Conta.php'><button>Conta</button></a>";
     echo"<a href='./views/criar_noticia.php'><button>Nova Notícia</button></a>";
 }
 ?>
 <a href="./views/hoje.php"><button>Hoje na História</button></a>
-<h1>Linha do tempo de Notícias</h1>
+
+</div>
+<div class="topo">
+
+    <?php if ($usuario): ?>
+    
+    <?php
+    $caminho = "uploads/" . $usuario['imagem'];
+
+    if (!empty($usuario['imagem']) && file_exists($caminho)) {
+        $imagem = $usuario['imagem'];
+    } else {
+        $imagem = 'padrao.png';
+    }
+    ?>
+
+    <div class="perfil">
+        <a href="./views/Conta.php">
+            <img src="uploads/<?= urlencode($imagem); ?>" class="avatar">
+        </a>
+        <span><?= $usuario['nome']; ?></span>
+    </div>
+
+<?php else: ?>
+
+    <a href="views/Login.php">Login</a>
+    <a href="views/Cadastro.php">Cadastro</a>
+
+<?php endif; ?>
+
+</div>
+
+
+<h1>Linha do tempo de <br>Notícias</h1>
     <table>
         <tr>
             <th>ID</th>
@@ -45,7 +80,20 @@ if (isset($_SESSION['usuario'])) {
             <tr>
                 <td><?= $n['id'] ?></td>
                 <td><?= $n['titulo'] ?></td>
-                <td><?= $n['autor_nome'] ?></td>
+                <td>  <div class="autor-box">
+    
+    <?php
+    $caminho = "uploads/" . $n['autor_imagem'];
+
+    $imagem = (!empty($n['autor_imagem']) && file_exists($caminho))
+        ? $n['autor_imagem']
+        : 'padrao.png';
+    ?>
+
+    <img src="uploads/<?= urlencode($imagem); ?>" class="avatar-mini">
+    <?= $n['autor_nome'] ?>
+</div>
+</td>
                 <td><?= $n['data'] ?></td>
 
 <td>
@@ -53,14 +101,14 @@ if (isset($_SESSION['usuario'])) {
 
     <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['id'] == $n['autor']): ?>
 
-        | <a href="views/editar_noticia.php?id=<?= $n['id'] ?>"><button>Editar</button></a>
+         <a href="views/editar_noticia.php?id=<?= $n['id'] ?>"><button class="editar">Editar</button></a>
 
-        | 
+         
         <form action="controllers/excluir_noticia.php" method="POST" style="display:inline;"
               onsubmit="return confirm('Tem certeza que deseja excluir esta notícia?');">
 
             <input type="hidden" name="id" value="<?= $n['id'] ?>">
-            <button type="submit">Excluir</button>
+            <button class="excluir" type="submit">Excluir</button>
 
         </form>
 
@@ -71,7 +119,7 @@ if (isset($_SESSION['usuario'])) {
 
     </table>
 
-    
+</div>
 </body>
 </html>
 

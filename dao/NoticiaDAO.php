@@ -25,14 +25,15 @@ class NoticiaDAO {
         ]);
     }
 
-    public function listar() {
+   public function listar() {
 
     $sql = "SELECT 
                 n.id,
                 n.titulo,
                 n.data,
                 n.autor,
-                u.nome AS autor_nome
+                u.nome AS autor_nome,
+                u.imagem AS autor_imagem
             FROM noticias n
             JOIN usuarios u ON n.autor = u.id
             ORDER BY n.data DESC";

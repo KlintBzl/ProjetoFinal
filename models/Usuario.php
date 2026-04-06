@@ -4,7 +4,11 @@ class Usuario {
     private $nome;
     private $email;
     private $senha;
+    private $imagem;
 
+    public function getImagem() {
+        return $this->imagem;
+    }
     public function getId() {
         return $this->id;
     }
@@ -28,6 +32,9 @@ class Usuario {
     }
     public function setSenha($senha){
         return $this->senha = $senha;
+    }
+    public function setImagem($imagem) {
+    $this->imagem = $imagem;
     }
 }
 
