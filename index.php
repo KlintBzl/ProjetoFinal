@@ -14,9 +14,10 @@ $noticias = $dao->listar();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal</title>
+    <title>Ecos do passado</title>
     <link rel="icon" type="image/png" sizes="35x35" href="./assets/home.png">
     <link rel="stylesheet" href="./style.css">
+    <script src="./js.js"></script>
 </head>
 <body>
 
@@ -25,7 +26,7 @@ $noticias = $dao->listar();
 <?php
 
 if (!isset($_SESSION['usuario'])) {
-    echo "<a href='./views/Cadastro.php'><button>Cadastre-se!</button></a>";
+    echo "<a href='./views/verificarcadastro.php'><button>Cadastre-se!</button></a>";
     echo "<a href='./views/Login.php'><button>Entre!</button></a>";
 }
 if (isset($_SESSION['usuario'])) {
@@ -35,38 +36,37 @@ if (isset($_SESSION['usuario'])) {
 <a href="./views/hoje.php"><button>Hoje na História</button></a>
 
 </div>
-<div class="topo">
+<?php if (isset($_SESSION['usuario'])): ?>
+<div class="perfil-container">
 
-    <?php if ($usuario): ?>
-    
-    <?php
-    $caminho = "uploads/" . $usuario['imagem'];
-
-    if (!empty($usuario['imagem']) && file_exists($caminho)) {
-        $imagem = $usuario['imagem'];
-    } else {
-        $imagem = 'padrao.png';
-    }
+<?php
+    $imagem = (!empty($usuario['imagem']) && file_exists("uploads/" . $usuario['imagem']))
+        ? $usuario['imagem']
+        : 'padrao.png';
     ?>
 
-    <div class="perfil">
-        <a href="./views/Conta.php">
-            <img src="uploads/<?= urlencode($imagem); ?>" class="avatar">
-        </a>
-        <span><?= $usuario['nome']; ?></span>
+    <img src="uploads/<?= urlencode($imagem); ?>" class="avatar" onclick="toggleMenu()">
+
+    <div id="menuPerfil" class="menu-perfil">
+        <a href="views/editar_usuario.php">Editar</a>
+        <a href="./controllers/excluir_usuario.php">Excluir</a>
+        <a href="./controllers/logout.php">Sair</a>
+
+        
+    <div class="menu-info">
+        <p>Email:</p>
+        <p><?= $usuario['email']; ?></p>
     </div>
 
-<?php else: ?>
-
-    <a href="views/Login.php">Login</a>
-    <a href="views/Cadastro.php">Cadastro</a>
-
-<?php endif; ?>
+    </div>
 
 </div>
+<?php endif; ?>
+    
 
-
-<h1>Linha do tempo de <br>Notícias</h1>
+<div class="tt">
+<h1>Ecos do <br>PASSADO</h1>
+</div>
     <table>
         <tr>
             <th>ID</th>

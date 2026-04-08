@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f6f9;
@@ -11,17 +15,20 @@ h2 {
     padding-left: 10px;
 }
 
+
 .cadastro {
     margin-top: 10px;
 }
 
 .forms {
     background: #fff;
-    padding: 15px;
-    margin-bottom: 25px;
+    padding: 20px;
+    /* simples e correto */
+    margin: 0 auto 25px auto;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 500px;
+    width: 100%;
 }
 
 .fundo {
@@ -142,20 +149,15 @@ a {
 }
 
 .avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffd900;
-}
-
-.avatarC {
     width: 70px;
     height: 70px;
+    margin-top: 35px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ffd900;
+    cursor: pointer;
 }
+
 
 .topo a {
     color: #ffd900;
@@ -205,4 +207,53 @@ a {
     height: 30px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.perfil-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-perfil {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: #1f180f;
+    border: 2px solid #fbff00;
+    border-radius: 12px;
+    width: 220px;
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    z-index: 999;
+}
+
+.menu-perfil a,
+.menu-perfil p {
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.menu-perfil a:hover {
+    background: #fbff00;
+    color: black;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.menu-info {
+    border-top: 1px solid #ffffff22;
+    margin-top: 5px;
+    padding-top: 5px;
+    font-size: 13px;
+    color: #ccc;
 }

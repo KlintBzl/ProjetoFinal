@@ -13,6 +13,7 @@ if (!isset($_SESSION['usuario'])) {
     <title>Criar Notícia</title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/newss.png">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style_edit.css">
 </head>
 <body>
 
@@ -20,10 +21,10 @@ if (!isset($_SESSION['usuario'])) {
 
 <form class="forms" action="../controllers/criar_noticia.php" method="POST" enctype="multipart/form-data">
 
-    <input type="text" name="titulo" placeholder="Título" required>
+    <input type="text" id="ttlo" name="titulo" placeholder="Título" required>
     <br><br>
 
-    <textarea name="noticia" placeholder="Escreva a notícia..." required></textarea>
+    <textarea name="noticia" id="not" placeholder="Escreva a notícia..." required></textarea>
     <br><br>
 
     <input type="file" name="imagem">

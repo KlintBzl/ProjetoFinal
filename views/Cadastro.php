@@ -20,7 +20,7 @@
     <input type="password" name="senha" placeholder="Senha" required>
     <br><br>
 
-    <input type="file" name="imagem" accept="image/*" required>
+    <input type="file" name="imagem" accept="image/*">
     <br><br>
 
     <button type="submit">Cadastrar</button>

@@ -28,6 +28,7 @@ if ($noticia['autor'] != $_SESSION['usuario']['id']) {
     <title>Editar Notícia</title>
     <link rel="icon" type="image/png" sizes="35x35" href="../assets/Bernadit.png">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style_edit.css">
 </head>
 <body>
 
@@ -37,10 +38,10 @@ if ($noticia['autor'] != $_SESSION['usuario']['id']) {
 
     <input type="hidden" name="id" value="<?= $noticia['id'] ?>">
 
-    <input type="text" name="titulo" value="<?= $noticia['titulo'] ?>" required>
+    <input type="text" id="ttlo" name="titulo" value="<?= $noticia['titulo'] ?>" required>
     <br><br>
 
-    <textarea name="noticia" required><?= $noticia['noticia'] ?></textarea>
+    <textarea name="noticia" id="not" required><?= $noticia['noticia'] ?></textarea>
     <br><br>
 
     <!-- imagem atual -->

@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-$_SESSION['usuario'] = $usuario;
-
+if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ $_SESSION['usuario'] = $usuario;
 
     <button type="submit">Entrar</button>
     <br>
-    <p class="cadastro">Ainda não se cadastrou? <a href="./Cadastro.php">Cadastre-se aqui!</a></p>
+    <p class="cadastro">Ainda não se cadastrou? <a href="./verificarcadastro.php">Cadastre-se aqui!</a></p>
 
 </form>
 <a href="../index.php"><button>Voltar</button></a>
