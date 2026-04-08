@@ -11,6 +11,7 @@ require_once "../dao/HistoriaDAO.php";
 
 $dao = new HistoriaDAO();
 $eventos = $dao->hoje();
+$eventosO = $dao->ontem();
 ?>
 <div class="container">
 <div class="card">

@@ -23,6 +23,12 @@ class HistoriaDAO {
         return $this->conn->query($sql)->fetchAll();
     }
 
+    public function ontem() {
+    $sql = "SELECT * FROM historia 
+            WHERE DATE_FORMAT(data_historica, '%m-%d') = DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%m-%d')";
+    return $this->conn->query($sql)->fetchAll();
+}
+
     public function listar() {
         $sql = "SELECT * FROM historia ORDER BY data_historica ASC";
         return $this->conn->query($sql)->fetchAll();
