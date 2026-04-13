@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db = "portal_historia";
-    private $user = "root";
-    private $pass = "";
+    private $host = "sql100.infinityfree.com";
+    private $db = "if0_41655155_portal_historia";
+    private $user = "if0_41655155";
+    private $pass = "klint1234567";
 
     public function conectar() {
         try {
