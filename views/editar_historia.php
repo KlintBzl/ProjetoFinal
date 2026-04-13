@@ -25,50 +25,76 @@ if (isset($_GET['id'])) {
 }
 }
 ?>
+<body>
 
-<h2>Editar Evento</h2>
+<div class="edit-container">
 
-<form class="forms" method="GET">
-    <label>Escolha o evento:</label><br>
-    <select name="id" onchange="this.form.submit()">
-        <option value="">-- Selecione --</option>
+    <!-- CARD DE SELEÇÃO -->
+    <div class="login-card">
 
-        <?php foreach ($eventos as $e): ?>
-            <option value="<?= $e['id'] ?>"
-                <?= (isset($_GET['id']) && $_GET['id'] == $e['id']) ? 'selected' : '' ?>>
-                
-                <?= $e['id'] ?> - <?= substr($e['evento'], 0, 30) ?>...
-            </option>
-        <?php endforeach; ?>
+        <h2>Editar Evento</h2>
 
-    </select>
-</form>
+        <form class="forms" method="GET">
 
-<br><br>
+            <label>Escolha o evento:</label>
 
-<?php if ($eventoSelecionado): ?>
+            <select name="id" onchange="this.form.submit()">
+                <option value="">-- Selecione --</option>
 
-<form class="forms" action="../controllers/editar_historia.php" method="POST" enctype="multipart/form-data">
+                <?php foreach ($eventos as $e): ?>
+                    <option value="<?= $e['id'] ?>"
+                        <?= (isset($_GET['id']) && $_GET['id'] == $e['id']) ? 'selected' : '' ?>>
+                        
+                        <?= $e['id'] ?> - <?= substr($e['evento'], 0, 40) ?>...
+                    </option>
+                <?php endforeach; ?>
 
-    <input type="hidden" name="id" value="<?= $eventoSelecionado['id'] ?>">
+            </select>
 
-    <textarea name="evento" required><?= $eventoSelecionado['evento'] ?></textarea>
-    <br><br>
+        </form>
 
-    <input type="date" name="data_historica" value="<?= $eventoSelecionado['data_historica'] ?>" required>
-    <br><br>
+    </div>
+<style>
+.login-card-e{
+margin-bottom: 20px;
+background: #111827;
+    padding: 30px;
+    border-radius: 15px;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    text-align: center;
+}
+</style>
+    <!-- CARD DE EDIÇÃO -->
+    <?php if ($eventoSelecionado): ?>
+    <div class="login-card-e">
 
-    <?php if ($eventoSelecionado['imagem']): ?>
-        <img src="../assets/img/<?= $eventoSelecionado['imagem'] ?>" width="150"><br><br>
+        <form class="forms" action="../controllers/editar_historia.php" method="POST" enctype="multipart/form-data">
+
+            <input type="hidden" name="id" value="<?= $eventoSelecionado['id'] ?>">
+
+            <textarea id="not" name="evento" required><?= $eventoSelecionado['evento'] ?></textarea>
+
+            <input type="date" name="data_historica" value="<?= $eventoSelecionado['data_historica'] ?>" required>
+
+            <?php if ($eventoSelecionado['imagem']): ?>
+                <img src="../assets/img/<?= $eventoSelecionado['imagem'] ?>" class="preview-img">
+            <?php endif; ?>
+
+            <label class="upload-label">
+                Alterar imagem
+                <input type="file" name="imagem">
+            </label>
+
+            <button type="submit">Salvar Alterações</button>
+
+        </form>
+
+        <a href="./hoje.php" class="voltar">← Voltar</a>
+
+    </div>
     <?php endif; ?>
 
-    <input type="file" name="imagem"><br><br>
+</div>
 
-    <button type="submit">Salvar</button>
-
-</form>
-
-<a href="./hoje.php"><button>Voltar</button></a>
-
-<?php endif; ?>
-
+</body>

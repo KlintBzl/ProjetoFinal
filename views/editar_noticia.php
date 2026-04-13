@@ -32,33 +32,35 @@ if ($noticia['autor'] != $_SESSION['usuario']['id']) {
 </head>
 <body>
 
-<h2>Editar Notícia</h2>
+<div class="login-container">
 
-<form class="forms" action="../controllers/editar_noticia.php" method="POST" enctype="multipart/form-data">
+    <div class="login-card editor">
 
-    <input type="hidden" name="id" value="<?= $noticia['id'] ?>">
+        <h2>Editar Notícia</h2>
 
-    <input type="text" id="ttlo" name="titulo" value="<?= $noticia['titulo'] ?>" required>
-    <br><br>
+        <form class="forms" action="../controllers/editar_noticia.php" method="POST" enctype="multipart/form-data">
 
-    <textarea name="noticia" id="not" required><?= $noticia['noticia'] ?></textarea>
-    <br><br>
+            <input type="hidden" name="id" value="<?= $noticia['id'] ?>">
 
-    <!-- imagem atual -->
-    <?php if ($noticia['imagem']): ?>
-        <img src="../assets/img/<?= $noticia['imagem'] ?>" width="200">
-        <br><br>
-    <?php endif; ?>
+            <input type="text" name="titulo" value="<?= $noticia['titulo'] ?>" placeholder="Título">
 
-    <!-- nova imagem -->
-    <input type="file" name="imagem">
-    <br><br>
+            <textarea id="not" name="noticia" required><?= $noticia['noticia'] ?></textarea>
 
-    <button type="submit">Salvar</button>
+            <!-- upload -->
+            <label class="upload-label">
+                Alterar imagem
+                <input type="file" name="imagem">
+            </label>
 
-</form>
+            <button type="submit">Salvar Alterações</button>
 
-<a href="../index.php"><button>Voltar</button></a>
+        </form>
+
+        <a href="../index.php" class="voltar">← Voltar</a>
+
+    </div>
+
+</div>
 
 </body>
 </html>

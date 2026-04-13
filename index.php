@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 
@@ -7,6 +9,10 @@ require_once "dao/NoticiaDAO.php";
 
 $dao = new NoticiaDAO();
 $noticias = $dao->listar();
+require_once "./dao/HistoriaDAO.php";
+
+$dao = new HistoriaDAO();
+$eventos = $dao->hoje();
 ?>
 
 <!DOCTYPE html>
@@ -64,60 +70,84 @@ if (isset($_SESSION['usuario'])) {
 <?php endif; ?>
     
 
+<h1 class="titulo-secao">Hoje na História</h1>
+
+<div class="eventos-container">
+<?php if (!empty($eventos)): 
+    $e = $eventos[0]; // pega só o primeiro
+?>
+    <div class="evento-card destaque">
+
+        <div class="evento-data">
+            <?= date('d/m', strtotime($e['data_historica'])) ?>
+        </div>
+
+        <div class="evento-info">
+            <p><?= $e['evento'] ?></p>
+            <span><?= date('Y', strtotime($e['data_historica'])) ?></span>
+        </div>
+
+    </div>
+<?php endif; ?>
+</div>
+<div class="ver-mais-container">
+    <a href="./views/hoje.php">
+        <button class="ver-mais">Ver todos os eventos</button>
+    </a>
+</div>
+
 <div class="tt">
 <h1>Ecos do <br>PASSADO</h1>
 </div>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Data</th>
-            <th>Ações</th>
-        </tr>
+    <div class="noticias">
 
-        <?php foreach ($noticias as $n): ?>
-            <tr>
-                <td><?= $n['id'] ?></td>
-                <td><?= $n['titulo'] ?></td>
-                <td>  <div class="autor-box">
+<?php foreach ($noticias as $n): ?>
+
     
-    <?php
-    $caminho = "uploads/" . $n['autor_imagem'];
+    <div class="noticia-card">
 
-    $imagem = (!empty($n['autor_imagem']) && file_exists($caminho))
-        ? $n['autor_imagem']
-        : 'padrao.png';
-    ?>
+        <div class="noticia-topo">
+            <div class="autor-box">
+                <?php
+                $caminho = "uploads/" . $n['autor_imagem'];
 
-    <img src="uploads/<?= urlencode($imagem); ?>" class="avatar-mini">
-    <?= $n['autor_nome'] ?>
+                $imagem = (!empty($n['autor_imagem']) && file_exists($caminho))
+                    ? $n['autor_imagem']
+                    : 'padrao.png';
+                ?>
+
+                <img src="uploads/<?= urlencode($imagem); ?>" class="avatar-mini">
+                <span><?= $n['autor_nome'] ?></span>
+            </div>
+
+            <span class="data"><?= $n['data'] ?></span>
+        </div>
+
+        <h2><?= $n['titulo'] ?></h2>
+
+        <div class="acoes">
+            <a href="views/ver_noticia.php?id=<?= $n['id'] ?>">
+                <button class="ver">Ler mais</button>
+            </a>
+
+            <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['id'] == $n['autor']): ?>
+
+                <a href="views/editar_noticia.php?id=<?= $n['id'] ?>">
+                    <button class="editar">Editar</button>
+                </a>
+
+                <form action="controllers/excluir_noticia.php" method="POST" onsubmit="return confirm('Tem certeza?');">
+                    <input type="hidden" name="id" value="<?= $n['id'] ?>">
+                    <button class="excluir" type="submit">Excluir</button>
+                </form>
+
+            <?php endif; ?>
+        </div>
+
+    </div>
+<?php endforeach; ?>
+
 </div>
-</td>
-                <td><?= $n['data'] ?></td>
-
-<td>
-    <a href="views/ver_noticia.php?id=<?= $n['id'] ?>"><button>Ver</button></a>
-
-    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['id'] == $n['autor']): ?>
-
-         <a href="views/editar_noticia.php?id=<?= $n['id'] ?>"><button class="editar">Editar</button></a>
-
-         
-        <form action="controllers/excluir_noticia.php" method="POST" style="display:inline;"
-              onsubmit="return confirm('Tem certeza que deseja excluir esta notícia?');">
-
-            <input type="hidden" name="id" value="<?= $n['id'] ?>">
-            <button class="excluir" type="submit">Excluir</button>
-
-        </form>
-
-    <?php endif; ?>
-</td>
-            </tr>
-        <?php endforeach; ?>
-
-    </table>
 
 </div>
 </body>

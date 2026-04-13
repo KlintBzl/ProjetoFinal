@@ -46,7 +46,7 @@ $usuario = $_SESSION['usuario'];
 </a>
 </form>
 
-<a href="./Conta.php"><button>Voltar</button></a>
+<a href="../index.php"><button>Voltar</button></a>
 
 </body>
 </html>

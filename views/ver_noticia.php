@@ -30,41 +30,48 @@ if (!$noticia) {
 </head>
 <body>
 
-<a href="../index.php"><button>⬅ Voltar</button></a>
+<div class="pagina-noticia">
 
-<h1 class="tt"><?= $noticia['titulo'] ?></h1>
+    <div class="topo-noticia">
+        <a href="../index.php" class="btn-voltar">⬅ Voltar</a>
+    </div>
 
-<div class="autor-info">
+    <div class="conteudo-noticia">
 
-    <?php
-    $caminho = "../uploads/" . $noticia['autor_imagem'];
+        <h1 class="titulo"><?= $noticia['titulo'] ?></h1>
 
-    $imagem = (!empty($noticia['autor_imagem']) && file_exists($caminho))
-        ? $noticia['autor_imagem']
-        : 'padrao.png';
-    ?>
+        <div class="autor-info">
+            <?php
+            $caminho = "../uploads/" . $noticia['autor_imagem'];
 
-    <img src="../uploads/<?= urlencode($imagem); ?>" class="avatar-mini">
-    
-    <span><?= $noticia['autor_nome'] ?></span>
+            $imagem = (!empty($noticia['autor_imagem']) && file_exists($caminho))
+                ? $noticia['autor_imagem']
+                : 'padrao.png';
+            ?>
 
-    <span class="data">
-        | 📅 <?= date('d/m/Y H:i', strtotime($noticia['data'])) ?>
-    </span>
+            <img src="../uploads/<?= urlencode($imagem); ?>" class="avatar-mini">
+
+            <div>
+                <strong><?= $noticia['autor_nome'] ?></strong>
+                <p class="data">
+                    📅 <?= date('d/m/Y H:i', strtotime($noticia['data'])) ?>
+                </p>
+            </div>
+        </div>
+
+        <?php if ($noticia['imagem']): ?>
+            <div class="imagem-noticia">
+                <img src="../assets/img/<?= $noticia['imagem'] ?>">
+            </div>
+        <?php endif; ?>
+
+        <div class="texto-noticia">
+            <?= nl2br($noticia['noticia']) ?>
+        </div>
+
+    </div>
 
 </div>
-
-<hr>
-
-<?php if ($noticia['imagem']): ?>
-    <img src="../assets/img/<?= $noticia['imagem'] ?>" width="400">
-<?php endif; ?>
-
-<hr>
-
-<p>
-    <?= nl2br($noticia['noticia']) ?>
-</p>
 
 </body>
 </html>

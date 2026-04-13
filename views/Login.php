@@ -15,22 +15,31 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 
-<h2>Login</h2>
+<div class="login-container">
 
-<form class="forms" action="../controllers/login.php" method="POST">
+    <div class="login-card">
+        <h2>Entrar</h2>
 
-    <input type="email" name="email" placeholder="Email" required>
-    <br><br>
+        <form class="forms" action="../controllers/login.php" method="POST">
 
-    <input type="password" name="senha" placeholder="Senha" required>
-    <br><br>
+            <input type="email" name="email" placeholder="Email" required>
 
-    <button type="submit">Entrar</button>
-    <br>
-    <p class="cadastro">Ainda não se cadastrou? <a href="./verificarcadastro.php">Cadastre-se aqui!</a></p>
+            <input type="password" name="senha" placeholder="Senha" required>
 
-</form>
-<a href="../index.php"><button>Voltar</button></a>
+            <button type="submit">Entrar</button>
+
+            <p class="cadastro">
+                Ainda não se cadastrou? 
+                <a href="./verificarcadastro.php">Cadastre-se aqui!</a>
+            </p>
+
+        </form>
+
+        <a href="../index.php" class="voltar">← Voltar</a>
+
+    </div>
+
+</div>
 
 </body>
 </html>

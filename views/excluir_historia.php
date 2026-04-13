@@ -27,50 +27,65 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
+<body>
 
-<h2>Excluir Evento</h2>
+<div class="edit-container">
 
-<form class="forms" method="GET">
-    <label>Escolha o evento:</label><br>
-    <select name="id" onchange="this.form.submit()">
-        <option value="">-- Selecione --</option>
+    <!-- CARD DE SELEÇÃO -->
+    <div class="login-card">
 
-        <?php foreach ($eventos as $e): ?>
-            <option value="<?= $e['id'] ?>"
-                <?= (isset($_GET['id']) && $_GET['id'] == $e['id']) ? 'selected' : '' ?>>
-                
-                <?= $e['id'] ?> - <?= substr($e['evento'], 0, 30) ?>...
-            </option>
-        <?php endforeach; ?>
+        <h2>Excluir Evento</h2>
 
-    </select>
-    
-</form>
+        <form class="forms" method="GET">
 
+            <label>Escolha o evento:</label>
 
-<br><br>
+            <select name="id" onchange="this.form.submit()">
+                <option value="">-- Selecione --</option>
 
-<?php if ($eventoSelecionado): ?>
+                <?php foreach ($eventos as $e): ?>
+                    <option value="<?= $e['id'] ?>"
+                        <?= (isset($_GET['id']) && $_GET['id'] == $e['id']) ? 'selected' : '' ?>>
+                        
+                        <?= $e['id'] ?> - <?= substr($e['evento'], 0, 40) ?>...
+                    </option>
+                <?php endforeach; ?>
 
-    <div class="fundo">
-    <h3>Tem certeza que deseja excluir?</h3>
+            </select>
 
-    <p><strong>Evento:</strong> <?= $eventoSelecionado['evento'] ?></p>
-    <p><strong>Data:</strong> <?= $eventoSelecionado['data_historica'] ?></p>
+        </form>
+
     </div>
 
-    <?php if ($eventoSelecionado['imagem']): ?>
-        <img src="../assets/img/<?= $eventoSelecionado['imagem'] ?>" width="150"><br><br>
+    <!-- CARD DE CONFIRMAÇÃO -->
+    <?php if ($eventoSelecionado): ?>
+    <div class="login-card perigo">
+
+        <h3>⚠️ Tem certeza que deseja excluir?</h3>
+
+        <div class="info-evento">
+            <p><strong>Evento:</strong> <?= $eventoSelecionado['evento'] ?></p>
+            <p><strong>Data:</strong> <?= date('d/m/Y', strtotime($eventoSelecionado['data_historica'])) ?></p>
+        </div>
+
+        <?php if ($eventoSelecionado['imagem']): ?>
+            <img src="../assets/img/<?= $eventoSelecionado['imagem'] ?>" class="preview-img">
+        <?php endif; ?>
+
+        <form action="../controllers/excluir_historia.php" method="POST"
+              onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
+
+            <input type="hidden" name="id" value="<?= $eventoSelecionado['id'] ?>">
+
+            <button type="submit" class="btn-danger">Excluir Evento</button>
+
+        </form>
+
+        <a href="./hoje.php" class="voltar">← Cancelar</a>
+
+    </div>
     <?php endif; ?>
 
-    <form action="../controllers/excluir_historia.php" method="POST"
-          onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
+</div>
 
-        <input type="hidden" name="id" value="<?= $eventoSelecionado['id'] ?>">
-
-        <button type="submit">Excluir</button>
-    </form>
-
-<a href="./hoje.php"><button>Voltar</button></a>
-
-<?php endif; ?>
+</body>
