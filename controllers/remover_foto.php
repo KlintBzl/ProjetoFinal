@@ -17,5 +17,5 @@ $dao->atualizar($usuario['id'], $usuario['nome'], $usuario['email'], null, null)
 // 🔥 atualiza sessão
 $_SESSION['usuario']['imagem'] = null;
 
-header("Location: ../views/Conta.php");
+header("Location: ../views/index.php");
 exit;

@@ -15,6 +15,12 @@ if (isset($_SESSION['usuario'])) {
 </head>
 <body>
 
+<div class="card">
+
+<img src="../assets/Ecos do Passado.png" alt="Logo" class="logo">
+
+</div>
+
 <div class="login-container">
 
     <div class="login-card">

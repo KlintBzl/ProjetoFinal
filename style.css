@@ -157,6 +157,8 @@ body {
     height: 50px;
     border-radius: 50%;
     border: 2px solid #adaf1e;
+    object-fit: cover;
+    /* 🔥 ISSO resolve o esticamento */
     cursor: pointer;
 }
 
@@ -200,7 +202,8 @@ body {
 
 .menu-info p {
     margin: 2px 0;
-    word-break: break-word; /* 👈 evita quebrar feio */
+    word-break: break-word;
+    /* 👈 evita quebrar feio */
 }
 
 /* FORMULÁRIOS */
@@ -214,7 +217,8 @@ body {
 }
 
 /* INPUTS */
-input, select {
+input,
+select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -230,6 +234,7 @@ input, select {
         font-size: 32px;
     }
 }
+
 
 .titulo-secao {
     margin: 40px 0 20px;
@@ -250,8 +255,9 @@ input, select {
     background: #111827;
     border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     transition: 0.2s;
+
 }
 
 .evento-card:hover {
@@ -295,9 +301,10 @@ input, select {
     padding: 30px;
     border-radius: 15px;
     width: 320px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     text-align: center;
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 /* Título */
@@ -466,11 +473,11 @@ input, select {
     border: 2px solid #af904c;
 }
 
-.edit-container{
+.edit-container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    gap: 30px;  
+    gap: 30px;
     margin-top: 20px;
 }
 
@@ -502,4 +509,41 @@ input, select {
 
 .btn-danger:hover {
     background: #cc0000;
+}
+
+/* foto grande */
+.avatar-grande {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #af904c;
+    margin-bottom: 15px;
+}
+
+/* topo do perfil */
+.perfil-topo {
+    display: flex;
+    justify-content: center;
+}
+
+/* botão perigo */
+.btn-danger {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d4d;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-danger:hover {
+    background: #cc0000;
+}
+
+.logo {
+    width: 7%;
 }

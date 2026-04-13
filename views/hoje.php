@@ -15,13 +15,18 @@ $eventosO = $dao->ontem();
 ?>
 <div class="container">
 <div class="card">
+
+<img src="../assets/Ecos do Passado.png" alt="Logo" class="logo">
+
 <a href="../index.php"><button>Voltar</button></a>
 <?php if (isset($_SESSION['usuario'])): ?>
     <a href="./criar_historia.php"><button>Novo Evento</button></a>
     <a href="./editar_historia.php"><button>Editar Evento</button></a>    
     <a href="./excluir_historia.php"><button>Excluir Evento</button></a>    
     <?php endif; ?>
-</div><div class="perfil-container">
+</div>
+<?php if (isset($_SESSION['usuario'])): ?>
+<div class="perfil-container">
 
 <?php
     $imagem = (!empty($usuario['imagem']) && file_exists("../uploads/" . $usuario['imagem']))
@@ -43,6 +48,7 @@ $eventosO = $dao->ontem();
     </div>
 
 </div>
+<?php endif; ?>
 </div>
     
 
@@ -80,3 +86,10 @@ $eventosO = $dao->ontem();
     </div>
 <?php endforeach; ?>
 </div>
+
+<style>.eventos-container{
+margin-bottom: 20px;
+margin-left: 10px;
+margin-right: 10px;
+}
+</style>

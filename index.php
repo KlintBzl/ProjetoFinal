@@ -29,7 +29,11 @@ $eventos = $dao->hoje();
 
 <div class="container">
 <div class="card">
+
+<img src="./assets/Ecos do Passado.png" alt="Logo" class="logo">
+
 <?php
+
 
 if (!isset($_SESSION['usuario'])) {
     echo "<a href='./views/verificarcadastro.php'><button>Cadastre-se!</button></a>";
@@ -55,7 +59,8 @@ if (isset($_SESSION['usuario'])) {
 
     <div id="menuPerfil" class="menu-perfil">
         <a href="views/editar_usuario.php">Editar</a>
-        <a href="./controllers/excluir_usuario.php">Excluir</a>
+        <a href="./controllers/excluir_usuario.php"
+        onclick="return confirm('Tem certeza que deseja excluir sua conta?');">Excluir</a>
         <a href="./controllers/logout.php">Sair</a>
 
         
@@ -71,6 +76,13 @@ if (isset($_SESSION['usuario'])) {
     
 
 <h1 class="titulo-secao">Hoje na História</h1>
+
+<style>
+    .evento-card{
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+</style>
 
 <div class="eventos-container">
 <?php if (!empty($eventos)): 

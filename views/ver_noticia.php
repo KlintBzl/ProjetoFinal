@@ -30,6 +30,11 @@ if (!$noticia) {
 </head>
 <body>
 
+<div class="card">
+
+<img src="../assets/Ecos do Passado.png" alt="Logo" class="logo">
+
+</div>
 <div class="pagina-noticia">
 
     <div class="topo-noticia">
@@ -75,3 +80,9 @@ if (!$noticia) {
 
 </body>
 </html>
+
+<style> 
+    .topo-noticia{
+        margin-right: 10px;
+    }
+</style>

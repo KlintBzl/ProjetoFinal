@@ -28,7 +28,7 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
         // 🔥 atualizar sessão
         $_SESSION['usuario']['imagem'] = $nomeArquivo;
 
-        header("Location: ../views/Conta.php");
+        header("Location: ../views/index.php");
         exit;
     }
 }

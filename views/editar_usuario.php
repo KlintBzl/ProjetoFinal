@@ -18,35 +18,84 @@ $usuario = $_SESSION['usuario'];
 </head>
 <body>
 
-<h2>Editar Conta</h2>
+<div class="card">
 
-<form class="forms" action="../controllers/editar_usuario.php" method="POST">
+<img src="../assets/Ecos do Passado.png" alt="Logo" class="logo">
 
-    <input type="text" name="nome" value="<?= $usuario['nome'] ?>" required>
-    <br><br>
+</div>
 
-    <input type="email" name="email" value="<?= $usuario['email'] ?>" required>
-    <br><br>
+<div class="login-container">
 
-    <input type="password" name="senha" placeholder="Nova senha (opcional)">
-    <br><br>
+    <!-- CARD PERFIL -->
+    <div class="login-card editor">
 
-    <button type="submit">Salvar</button>
+        <h2>Editar Conta</h2>
 
-</form>
+        <!-- FOTO -->
+        <div class="perfil-topo">
+            <?php
+            $imagem = (!empty($usuario['imagem']) && file_exists("../uploads/" . $usuario['imagem']))
+                ? $usuario['imagem']
+                : "padrao.png";
+            ?>
 
-<form class="forms" action="../controllers/atualizar_usuario.php" method="POST" enctype="multipart/form-data">
-    
-    <input type="file" name="imagem" accept="image/*">
-    <br><br>
+            <img src="../uploads/<?= $imagem ?>" id="previewPerfil" class="avatar-grande">
+        </div>
 
-    <button type="submit">Atualizar Foto</button>
-    <a href="../controllers/remover_foto.php">
-    <button>Remover Foto</button>
-</a>
-</form>
+        <!-- DADOS -->
+        <form class="forms" action="../controllers/editar_usuario.php" method="POST">
 
-<a href="../index.php"><button>Voltar</button></a>
+            <input type="text" name="nome" value="<?= $usuario['nome'] ?>" placeholder="Nome">
+
+            <input type="email" name="email" value="<?= $usuario['email'] ?>" placeholder="Email">
+
+            <input type="password" name="senha" placeholder="Nova senha (opcional)">
+
+            <button type="submit">Salvar Alterações</button>
+
+        </form>
+
+    </div>
+
+    <!-- CARD IMAGEM -->
+    <div class="login-card">
+
+        <form class="forms" action="../controllers/atualizar_usuario.php" method="POST" enctype="multipart/form-data">
+
+            <label class="upload-label">
+                Alterar Foto
+                <input type="file" name="imagem" accept="image/*">
+            </label>
+
+            <button type="submit">Atualizar Foto</button>
+
+        </form>
+
+        <form action="../controllers/remover_foto.php">
+            <button class="btn-danger">Remover Foto</button>
+        </form>
+
+        <a href="../index.php" class="voltar">← Voltar</a>
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.querySelector('input[name="imagem"]');
+    const preview = document.getElementById("previewPerfil");
+
+    if (input && preview) {
+        input.addEventListener("change", () => {
+            const file = input.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+            }
+        });
+    }
+});
+</script>
 
 </body>
 </html>
